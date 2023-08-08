@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% load humanize %}
+{% block title %}
+  order_details page
+{% endblock title %}
+
+
+{% block content %}
+
+
+<section id="order_details" class="my-3">
+    <div class="container">
+        <div class="row gy-3">
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <h2>Order Details</h2>
+                        <p>Order ID: {{ order.id }}</p>
+                        <p>Payment Method: {{ order.payment_method }}</p>
+                        <p>Payment Price: &#8358; {{ order.amount|intcomma }}</p> <!-- Amount Paid -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+  
+{% endblock content %}
+

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% block title %}
+  featured_products page
+{% endblock title %}
+
+
+{% block content %}
+
+  <section id="featured_products" class="my-3">
+     <h5 class="text-center display-6 text-success">featured_products</h5>
+    <div class="container">
+      <div class="row">
+        {% if products %}
+           {% for product in products %}
+           <div class="col-md-4">
+            <div class="card">
+              <img src="{{product.image.url}}"  height="300" width="300"    alt="{{product.title}}" class="card-img">
+              <div class="card-body text-center">
+                <h5 class="display-6 " >{{product.title}}</h5>
+                <h4> &#8358; {{product.price |intcomma }} 
+               </div>
+               <div class="card-footer d-flex justify-content-between">
+                <a href="{% url 'addtocart' product.id  %}" class="btn btn-success">Add to Cart</a>
+                <a href="{% url 'product' product.id %}" class="btn btn-info">More</a>
+               </div>
+            </div>
+          </div>
+           {% endfor %}
+        {% else %}
+           <p class="lead bg-danger text-white">No category base on the selected product</p>  
+        {% endif %}
+        
+      </div>
+    </div>
+
+  </section>
+
+ 
+{% endblock content %}

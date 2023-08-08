@@ -1,0 +1,52 @@
+<nav class="navbar navbar-expand-lg bg-transparent navbar-light sticky-top">
+  <div class="container">
+    <a class="navbar-brand text-black fw-bold" href="#">Ecommerce</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav ms-auto fw-medium">
+        <li class="nav-item">
+          <a class="nav-link  text-black"  href="{% url 'index' %}">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link text-black" href="{% url 'products' %}">Shop</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Category
+          </a>
+          <ul class="dropdown-menu">
+            {% for item in catloops %}
+            <li><a class="dropdown-item" href="{% url 'category' item.id %}"> {{item.title}}  </a></li>             
+            {% endfor %}
+          </ul>        
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-black" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            My Account
+          </a>
+          <ul class="dropdown-menu">
+            {% if request.user.is_authenticated %}
+            <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+            <li><a class="dropdown-item" href="{% url 'dashboard' %}">Dashboard</a></li>
+            {% else %}
+            <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+            <li><a class="dropdown-item" href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+          </ul>
+        </li>
+       <!-- search -->
+       <div class="search">
+         <form action="{% url 'search' %}" method="get">
+          {% csrf_token %}
+          <input class="form-control me-2" type="search" placeholder="Search" name="search_word" required aria-label="Search">
+         </form>
+       </div>
+       <li class="nav-item"><a class="nav-link text-black" href="{% url 'mycart' %}"><i class="bi bi-cart-fill"><span class="badge bg-danger">{{carts}}</span></i></a></li>
+      
+      </ul>
+    </div>
+  </div>
+</nav>

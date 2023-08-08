@@ -1,0 +1,165 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}  {% endblock title %}</title>
+    <!-- bootstrap css -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+    <!-- bootstrap icon -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
+   <!-- custom css -->
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+
+</head>
+<body>
+  <style>
+    .btn{
+  border-radius: 0 !important;
+ 
+ 
+}
+.card{
+  border-radius: 0 !important;
+}
+
+#products .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 75vh;
+}
+#featured_products .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 75vh;
+}
+#product .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 85vh;
+}
+#category .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 75vh;
+}
+#login .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 60vh;
+}
+#register .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 160vh;
+}
+#update .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 140vh;
+}
+#Dashboard .card{
+  width: 350px;
+  margin: 10% 7%;
+  box-shadow: 0 .3rem 1rem rgba(0, 0, 0, .8);
+  border-radius: 20px;
+  height: 75vh;
+
+}
+
+
+/* styles.css */
+
+/* Mobile Responsive - Small screens (up to 768px) */
+@media (max-width: 768px) {
+  #products .card,
+  #featured_products .card,
+  #product .card,
+  #category .card,
+  #login .card,
+  #Dashboard .card {
+    height: auto; /* Adjust height to fit content */
+    margin: 10% 3%; /* Reduce horizontal margin for better layout on small screens */
+  }
+  #cart .card .table-responsive {
+    overflow-x: auto;
+  }
+  
+  /* Make the images smaller on smaller screens */
+  .img-thumbnail {
+    max-width: 60px;
+  }
+}
+
+/* Mobile Responsive - Medium screens (769px to 992px) */
+@media (min-width: 769px) and (max-width: 992px) {
+  /* You can adjust the styles for medium screens here if needed */
+  #register .card,
+  #update .card {
+    height: auto; /* Adjust height to fit content */
+    margin: 10% 5%; /* Reduce horizontal margin for better layout on medium screens */
+  }
+}
+
+
+
+  </style>
+
+    <!-- navbar -->
+      {%  include "_partials/_navbar.html" %}
+
+    <!-- message popup -->
+    {% if messages %}
+  {% for message in messages %}
+     <div class="container">
+      <div class="row">
+        <div class="col-md-5 mx-auto" >
+          <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            <strong>{{ message }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+
+        </div>
+      </div>
+     </div>
+    
+  {% endfor %}
+    
+  {% endif %}
+  
+     
+    
+
+    <!-- main block -->
+       {% block  content %}
+        
+       {% endblock content   %}
+    <!-- end block -->
+
+    <!-- footer -->
+    {%  include "_partials/_footer.html" %}
+
+
+
+
+
+
+    <!-- bootstrap js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+</body>
+</html>

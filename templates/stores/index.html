@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+{% block title %} index page {% endblock title %}
+
+{% block content %}
+  
+<section id="slider">
+  <div id="demo" class="carousel slide" data-bs-ride="carousel">
+
+    <!-- Indicators/dots -->
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="1"></button>
+      <button type="button" data-bs-target="#demo" data-bs-slide-to="2"></button>
+    </div>
+  
+    <!-- The slideshow/carousel -->
+    <div class="carousel-inner">
+      {% if sliders %}
+           {% for slider in sliders  %}
+           <div class="carousel-item active">
+            <img src="{{slider.slider.url}}" alt="bag" class="d-block w-100">
+          </div>             
+           {% endfor %} 
+      {% else %}
+         <p class="lead bg-danger text-white p-4">
+           No slider added by the admin yet
+         </p>    
+      {% endif %}         
+    </div>    
+    <!-- Left and right controls/icons -->
+    <button class="carousel-control-prev" type="button" data-bs-target="#demo" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon"></span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#demo" data-bs-slide="next">
+      <span class="carousel-control-next-icon"></span>
+    </button>
+  </div>
+</section>
+
+
+  <!-- category -->
+  <section id="category" class="py-3">
+    <div class="intro text-center">
+      <h6 class="pt-3 bi text-success fw-bold">------------- Best Items -----------</h6>
+      <h4 class="display-6  py-1 fw-bold">Shop by categories</h4>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% if category %}
+           {% for category in category %}
+           <div class="col-md-3">
+            <a href="{% url 'category' category.id  %}" class="text-decoration-none">
+              <div class="circle overflow-hidden">
+                <img src="{{category.image.url}}"  height="200" width="300" alt="{{category.title}}" class="card-fluid">
+              </div>
+              <h5 class="text-center">{{category.title |title}} </h5>
+            
+            </a>           
+           </div> 
+           {% endfor %}
+        {% else %}
+          <p class="lead p-3 bg-danger text-white">No category yet!</p>
+        {% endif %}   
+      </div>
+    </div>
+  </section>
+
+
+  <!-- products -->
+  <section id="latest_products" class="py-3">
+    <div class="intro text-center mb-2 container">
+      <h6 class="pt-3 bi text-success fw-bold">------------- Latest Items -----------</h6>
+      <h4 class="display-5 fw-bold">Latest Products</h4>
+      <div class="mb-4">
+        <a href="{% url 'products' %}" class="btn btn-success">New Products</a>
+        <a href="{% url 'featured_products' %}" class="btn btn-success">Featured Products</a>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        {% if products %}
+           {% for product in products %}
+           <div class="col-md-3">
+            <div class="card">
+              <img src="{{product.image.url}}"  height="200"  alt="{{product.title}}" class="card-fluid">
+            <h5 class="text-center">{{product.title}} </h5>
+           </div>
+           </div> 
+           {% endfor %}
+        {% else %}
+          <p class="lead p-3 bg-danger text-white">No latest product yet!</p>
+        {% endif %}   
+      </div>
+      <div class="text-end mt-4">
+        <a href="{% url 'products' %}" class="btn btn-success">Load More</a>
+      </div>
+    </div>
+  </section>
+
+
+
+{% endblock content %}
